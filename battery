@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+
+###
+### battery: Display properties specific to the battery of a Mac. Inspired by https://gist.github.com/earlonrails/9374070
+###
+
+if [[ "$(uname)" != "Darwin" ]]; then
+	printf 'This can only be ran on a macOS machine.\n'
+	exit 1
+fi
+
+# charging: Determine if the battery potential is under capacity, and in a power-gain state.
+charging () {
+	local IS_CHARGING=`ioreg -r -n AppleSmartBattery | grep IsCharging | cut -c22-`
+
+	if [[ "$IS_CHARGING" == "Yes" ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+# connected: Determine if the battery is connected to an external power source.
+connected () {
+	local IS_CONNECTED=`ioreg -r -n AppleSmartBattery | grep ExternalConnected | cut -c29-`
+
+	if [[ "$IS_CONNECTED" == "Yes" ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+# timeleft: Determine the amount of time (in minutes) left until the battery is either charged or drained.
+timeleft () {
+	MINS_LEFT=`ioreg -r -n AppleSmartBattery | grep TimeRemaining | cut -c25-`
+	return $MINS_LEFT
+}
+
+while [[ $# -gt 0 ]]; do
+	case $1 in
+		-h|--help)
+			printf 'Usage: battery [-h|--help] [-A|--amperage] [-C|--is-charging] [-F|--is-fully-charged] [-K|--cycle-count] [-M|--minutes-until-charged] [-O|--minutes-until-drained] [-P|--is-power-connected] [-S|--serial-number] [-T|--temperature] [-V|--voltage] [-W|--manufacturer]\n'
+			break
+		;;
+		-A|--amperage)
+			shift
+
+			AMPERAGE=`ioreg -r -n AppleSmartBattery | grep -w '\s"Amperage"' | cut -c20-`
+
+			printf '%smA\n' "$AMPERAGE"
+		;;
+		-C|--is-charging)
+			shift
+
+			if charging; then
+				printf 'true\n'
+			else
+				printf 'false\n'
+			fi
+		;;
+		-F|--is-fully-charged)
+			shift
+
+			IS_FULLY_CHARGED=`ioreg -r -n AppleSmartBattery | grep FullyCharged | cut -c24-`
+
+			if [[ "$IS_FULLY_CHARGED" == "Yes" ]]; then
+				printf 'true\n'
+			else
+				printf 'false\n'
+			fi
+		;;
+		-K|--cycle-count)
+			shift
+
+			CYCLE_COUNT=`ioreg -r -n AppleSmartBattery | grep '"CycleCount"' | cut -c22-`
+
+			printf '%s\n' "$CYCLE_COUNT"
+		;;
+		-M|--minutes-until-charged)
+			shift
+
+			MINS_LEFT=`ioreg -r -n AppleSmartBattery | grep TimeRemaining | cut -c25-`
+
+			if ! connected; then
+				printf 'The battery is not connected to a power source.\n'
+				break
+			fi
+
+			printf '%s\n' "$MINS_LEFT"
+		;;
+		-O|--minutes-until-discharged)
+			shift
+
+			MINS_LEFT=`ioreg -r -n AppleSmartBattery | grep TimeRemaining | cut -c25-`
+
+			if connected; then
+				printf 'The battery is connected to a power source.\n'
+				break
+			fi
+
+			printf '%s\n' "$MINS_LEFT"
+		;;
+		-P|--is-power-connected)
+			shift
+
+			if connected; then
+				printf 'true\n'
+			else
+				printf 'false\n'
+			fi
+		;;
+		-S|--serial-number)
+			shift
+
+			SERIAL=`ioreg -r -n AppleSmartBattery | grep BatterySerialNumber | cut -c31- | tr -d \"`
+
+			printf '%s\n' "$SERIAL"
+		;;
+		-T|--temperature)
+			shift
+
+			TEMP=`ioreg -r -n AppleSmartBattery | grep Temperature | cut -c23-`
+			TEMP_C=`echo "scale = 2; $TEMP / 100.0" | bc`
+			TEMP_F=`echo "scale = 2; ($TEMP_C * (9 / 5)) + 32.0" | bc`
+			TEMP_K=`echo "scale = 2; $TEMP_C + 273.15" | bc`
+
+			printf '%s °C\n%s °F\n%s °K\n' "$TEMP_C" "$TEMP_F" "$TEMP_K"
+		;;
+		-V|--voltage)
+			shift
+
+			VOLTAGE=`ioreg -r -n AppleSmartBattery | grep '\s"Voltage"' | cut -c19-`
+
+			printf '%smV\n' "$VOLTAGE"
+		;;
+		-W|--manufacturer)
+			shift
+
+			MANUFACTURER=`ioreg -r -n AppleSmartBattery | grep '"Manufacturer"' | cut -c24- | tr -d \"`
+
+			printf '%s\n' "$MANUFACTURER"
+		;;
+		*)
+			printf 'Invalid option %s\n\n' "$1"
+			printf 'Usage: battery [-h|--help] [-A|--amperage] [-C|--is-charging] [-F|--is-fully-charged] [-K|--cycle-count] [-M|--minutes-until-charged] [-O|--minutes-until-drained] [-P|--is-power-connected] [-S|--serial-number] [-T|--temperature] [-V|--voltage] [-W|--manufacturer]\n'
+
+			break
+		;;
+	esac
+done

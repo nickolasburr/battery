@@ -1,0 +1,76 @@
+# battery
+
+`battery` is a Bash script for analyzing information about your Mac's battery.
+
+## Installation
+
+Add the executable somewhere in your PATH (e.g. /usr/local/bin):
+
+```shell
+cd /usr/local/bin && curl -sSL -O https://raw.githubusercontent.com/nickolasburr/battery/master/battery
+```
+
+## Options
+
++ `--amperage`, `-A`: Show battery amperage (in milliamps).
++ `--is-charging`, `-C`: Show whether battery potential is under capacity and in a power-gain (charging) state.
++ `--is-fully-charged`, `-F`: Show whether battery is at capacity and not in a power-gain (charging) state.
++ `--cycle-count`, `-K`: Show the number of completed charge/discharge cycles.
++ `--minutes-until-charged`, `-M`: Show the minutes remaining until battery is fully charged.
++ `--minutes-until-discharged`, `-O`: Show the minutes remaining until battery is fully discharged.
++ `--is-power-connected`, `-P`: Show whether the battery is connected to an external power source (e.g. AC power outlet).
++ `--serial-number`, `-S`: Show the battery serial number.
++ `--temperature`, `-T`: Show the battery temperature in Fahrenheit, Celsius, and Kelvin.
++ `--voltage`, `-V`: Show the battery voltage (in millivolts).
++ `--manufacturer`, `-W`: Show the battery manufacturer.
+
+## Examples
+
+**Show battery amperage**
+
+```shell
+battery -A
+# => 673mA
+```
+
+**Show the number of completed charge/discharge cycles**
+
+```shell
+battery -K
+# => 249
+```
+
+**Show minutes until battery is fully discharged**
+
+```shell
+battery -O
+# => 35
+```
+
+**Show if the battery is connected to a power source**
+
+```shell
+battery -P
+# => false
+```
+
+**Show battery serial number**
+
+```shell
+battery -S
+# => E93VG22TC81H0B1F3
+```
+
+**Show battery voltage**
+
+```shell
+battery -V
+# => 12375mV
+```
+
+**Show battery manufacturer**
+
+```shell
+battery -W
+# => SMP
+```
