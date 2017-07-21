@@ -42,21 +42,21 @@ usage () {
 	local USAGE=
 
 	read -r -d '' USAGE <<-'EOF'
-		Usage: battery [OPTIONS]
+		  Usage: battery [OPTIONS]
 
-		Options:
-			--help, -h                       Show usage details
-			--amperage, -A                   Show battery amperage (in milliamps).
-			--is-charging, -C                Whether battery potential is under capacity and in a power-gain (charging) state.
-			--is-fully-charged, -F           Whether battery is at capacity and not in a power-gain (charging) state.
-			--cycle-count, -K                Show number of completed charge/discharge cycles.
-			--minutes-until-charged, -M      Show minutes remaining until battery is fully charged.
-			--minutes-until-discharged, -O   Show minutes remaining until battery is fully discharged.
-			--is-power-connected, -P         Whether battery is connected to a power source.
-			--serial-number, -S              Show battery serial number.
-			--temperature, -T                Show battery temperature in Fahrenheit, Celsius, and Kelvin.
-			--voltage, -V                    Show battery voltage (in millivolts)
-			--manufacturer, -W               Show battery manufacturer.
+		  Options:
+			  --help, -h                       Show usage details
+			  --amperage, -A                   Show battery amperage (in milliamps).
+			  --is-charging, -C                Whether battery potential is under capacity and in a power-gain (charging) state.
+			  --is-fully-charged, -F           Whether battery is at capacity and not in a power-gain (charging) state.
+			  --cycle-count, -K                Show number of completed charge/discharge cycles.
+			  --minutes-until-charged, -M      Show minutes remaining until battery is fully charged.
+			  --minutes-until-discharged, -O   Show minutes remaining until battery is fully discharged.
+			  --is-power-connected, -P         Whether battery is connected to a power source.
+			  --serial-number, -S              Show battery serial number.
+			  --temperature, -T                Show battery temperature in Fahrenheit, Celsius, and Kelvin.
+			  --voltage, -V                    Show battery voltage (in millivolts)
+			  --manufacturer, -W               Show battery manufacturer.
 	EOF
 
 	echo "$USAGE"
