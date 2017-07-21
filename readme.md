@@ -1,6 +1,6 @@
 # battery
 
-`battery` is a Bash script for analyzing information about your Mac's battery.
+`battery` is a Bash script for analyzing information about your MacBook (Pro) battery.
 
 ## Installation
 
