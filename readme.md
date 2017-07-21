@@ -15,14 +15,14 @@ cd /usr/local/bin && curl -sSL -O https://raw.githubusercontent.com/nickolasburr
 + `--amperage`, `-A`: Show battery amperage (in milliamps).
 + `--is-charging`, `-C`: Show whether battery potential is under capacity and in a power-gain (charging) state.
 + `--is-fully-charged`, `-F`: Show whether battery is at capacity and not in a power-gain (charging) state.
-+ `--cycle-count`, `-K`: Show the number of completed charge/discharge cycles.
-+ `--minutes-until-charged`, `-M`: Show the minutes remaining until battery is fully charged.
-+ `--minutes-until-discharged`, `-O`: Show the minutes remaining until battery is fully discharged.
-+ `--is-power-connected`, `-P`: Show whether the battery is connected to an external power source (e.g. AC power outlet).
-+ `--serial-number`, `-S`: Show the battery serial number.
-+ `--temperature`, `-T`: Show the battery temperature in Fahrenheit, Celsius, and Kelvin.
-+ `--voltage`, `-V`: Show the battery voltage (in millivolts).
-+ `--manufacturer`, `-W`: Show the battery manufacturer.
++ `--cycle-count`, `-K`: Show number of completed charge/discharge cycles.
++ `--minutes-until-charged`, `-M`: Show minutes remaining until battery is fully charged.
++ `--minutes-until-discharged`, `-O`: Show minutes remaining until battery is fully discharged.
++ `--is-power-connected`, `-P`: Show whether battery is connected to an external power source (e.g. AC power outlet).
++ `--serial-number`, `-S`: Show battery serial number.
++ `--temperature`, `-T`: Show battery temperature in Fahrenheit, Celsius, and Kelvin.
++ `--voltage`, `-V`: Show battery voltage (in millivolts).
++ `--manufacturer`, `-W`: Show battery manufacturer.
 
 ## Examples
 
