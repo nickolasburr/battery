@@ -42,9 +42,9 @@ usage () {
 	local USAGE=
 
 	read -r -d '' USAGE <<-'EOF'
-		  Usage: battery [OPTIONS]
+		Usage: battery [OPTIONS]
 
-		  Options:
+		Options:
 			  --help, -h                       Show usage details
 			  --amperage, -A                   Show battery amperage (in milliamps).
 			  --is-charging, -C                Whether battery potential is under capacity and in a power-gain (charging) state.
