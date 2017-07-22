@@ -1,13 +1,20 @@
 # battery
 
-`battery` is a Bash script for analyzing information about your MacBook (Pro) battery.
+`battery` is a CLI for analyzing information about your MacBook (Pro) battery.
 
 ## Installation
 
-Add the executable somewhere in your PATH (e.g. /usr/local/bin):
+Add the file to your PATH (e.g. /usr/local/bin):
 
 ```shell
 cd /usr/local/bin && curl -sSL -O https://raw.githubusercontent.com/nickolasburr/battery/master/battery
+```
+
+Make it executable:
+
+```shell
+# /usr/local/bin
+chmod 755 battery
 ```
 
 ## Options
