@@ -4,15 +4,24 @@
 
 ## Installation
 
+### Homebrew
+
+```
+brew tap nickolasburr/pfa
+brew install battery
+```
+
+### Manual
+
 Add the file to your PATH (e.g. /usr/local/bin):
 
-```shell
+```
 cd /usr/local/bin && curl -sSL -O https://raw.githubusercontent.com/nickolasburr/battery/master/battery
 ```
 
 Make it executable:
 
-```shell
+```
 # /usr/local/bin
 chmod 755 battery
 ```
