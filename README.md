@@ -1,6 +1,6 @@
 # battery
 
-`battery` is a CLI for analyzing information about your MacBook (Pro) battery.
+`battery` is a macOS utility for analyzing battery properties.
 
 ## Installation
 
@@ -13,16 +13,16 @@ brew install battery
 
 ### Manual
 
-Add the file to your PATH (e.g. /usr/local/bin):
+Add `battery` to your `PATH` (e.g. /usr/local/bin):
 
 ```shell
-cd /usr/local/bin && curl -sSL -O https://raw.githubusercontent.com/nickolasburr/battery/master/battery
+cd /usr/local/bin && curl -fsSL -O https://raw.githubusercontent.com/nickolasburr/battery/master/battery
 ```
 
-Make it executable:
+Make executable:
 
 ```shell
-# /usr/local/bin
+# wd: /usr/local/bin
 chmod 755 battery
 ```
 
@@ -46,6 +46,7 @@ chmod 755 battery
 
 ```shell
 battery -A
+
 # => 673mA
 ```
 
@@ -53,6 +54,7 @@ battery -A
 
 ```shell
 battery -K
+
 # => 249
 ```
 
@@ -60,6 +62,7 @@ battery -K
 
 ```shell
 battery -O
+
 # => 35
 ```
 
@@ -67,6 +70,7 @@ battery -O
 
 ```shell
 battery -P
+
 # => false
 ```
 
@@ -74,13 +78,25 @@ battery -P
 
 ```shell
 battery -S
+
 # => E93VG22TC81H0B1F3
+```
+
+**Show battery temperature (in Fahrenheit, Celsius, and Kelvin)**
+
+```shell
+battery -T
+
+# => 30.66 °C
+#    87.18 °F
+#    303.81 °K
 ```
 
 **Show battery voltage**
 
 ```shell
 battery -V
+
 # => 12375mV
 ```
 
@@ -88,5 +104,6 @@ battery -V
 
 ```shell
 battery -W
+
 # => SMP
 ```
